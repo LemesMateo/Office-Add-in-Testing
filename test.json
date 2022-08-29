@@ -1,0 +1,679 @@
+Object
+AccountTypeFilter:
+AAD: "aad"
+MSA: "msa"
+NoFilter: "noFilter"
+[[Prototype]]: Object
+ApplicationMode:
+Client: "client"
+WebEditor: "webEditor"
+WebViewer: "webViewer"
+[[Prototype]]: Object
+AsyncResultStatus:
+Failed: "failed"
+Succeeded: "succeeded"
+[[Prototype]]: Object
+CoercionType:
+Html: "html"
+Text: "text"
+[[Prototype]]: Object
+DocumentMode:
+ReadOnly: "readOnly"
+ReadWrite: "readWrite"
+[[Prototype]]: Object
+EventType:
+AppCommandInvoked: "appCommandInvoked"
+AppointmentTimeChanged: "olkAppointmentTimeChanged"
+AttachmentsChanged: "olkAttachmentsChanged"
+DialogEventReceived: "dialogEventReceived"
+DialogMessageReceived: "dialogMessageReceived"
+DialogParentEventReceived: "dialogParentEventReceived"
+DialogParentMessageReceived: "dialogParentMessageReceived"
+EnhancedLocationsChanged: "olkEnhancedLocationsChanged"
+InfobarClicked: "olkInfobarClicked"
+ItemChanged: "olkItemSelectedChanged"
+OfficeThemeChanged: "officeThemeChanged"
+RecipientsChanged: "olkRecipientsChanged"
+RecurrenceChanged: "olkRecurrenceChanged"
+[[Prototype]]: Object
+FeatureGates:
+[[Prototype]]: Object
+FilterType:
+All: "all"
+[[Prototype]]: Object
+HostType:
+Access: "Access"
+Excel: "Excel"
+OneNote: "OneNote"
+Outlook: "Outlook"
+PowerPoint: "PowerPoint"
+Project: "Project"
+Visio: "Visio"
+Word: "Word"
+[[Prototype]]: Object
+InitializationReason:
+ControlActivation: "controlActivation"
+DocumentOpened: "documentOpened"
+Inserted: "inserted"
+[[Prototype]]: Object
+MailboxEnums:
+ActionType:
+ShowTaskPane: "showTaskPane"
+[[Prototype]]: Object
+AppointmentSensitivityType:
+Confidential: "confidential"
+Normal: "normal"
+Personal: "personal"
+Private: "private"
+[[Prototype]]: Object
+AttachmentContentFormat:
+Base64: "base64"
+Eml: "eml"
+ICalendar: "iCalendar"
+Url: "url"
+[[Prototype]]: Object
+AttachmentStatus:
+Added: "added"
+Removed: "removed"
+[[Prototype]]: Object
+AttachmentType:
+Cloud: "cloud"
+File: "file"
+Item: "item"
+[[Prototype]]: Object
+BodyType:
+Html: "html"
+Text: "text"
+[[Prototype]]: Object
+CategoryColor:
+None: "None"
+Preset0: "Preset0"
+Preset1: "Preset1"
+Preset2: "Preset2"
+Preset3: "Preset3"
+Preset4: "Preset4"
+Preset5: "Preset5"
+Preset6: "Preset6"
+Preset7: "Preset7"
+Preset8: "Preset8"
+Preset9: "Preset9"
+Preset10: "Preset10"
+Preset11: "Preset11"
+Preset12: "Preset12"
+Preset13: "Preset13"
+Preset14: "Preset14"
+Preset15: "Preset15"
+Preset16: "Preset16"
+Preset17: "Preset17"
+Preset18: "Preset18"
+Preset19: "Preset19"
+Preset20: "Preset20"
+Preset21: "Preset21"
+Preset22: "Preset22"
+Preset23: "Preset23"
+Preset24: "Preset24"
+[[Prototype]]: Object
+ComposeType:
+Forward: "forward"
+NewMail: "newMail"
+Reply: "reply"
+[[Prototype]]: Object
+Days:
+Day: "day"
+Fri: "fri"
+Mon: "mon"
+Sat: "sat"
+Sun: "sun"
+Thu: "thu"
+Tue: "tue"
+Wed: "wed"
+Weekday: "weekday"
+WeekendDay: "weekendDay"
+[[Prototype]]: Object
+DelegatePermissions:
+DeleteAll: 8
+DeleteOwn: 4
+EditAll: 32
+EditOwn: 16
+Read: 1
+Write: 2
+[[Prototype]]: Object
+EntityType:
+Address: "address"
+Contact: "contact"
+EmailAddress: "emailAddress"
+FlightReservations: "flightReservations"
+MeetingSuggestion: "meetingSuggestion"
+ParcelDeliveries: "parcelDeliveries"
+PhoneNumber: "phoneNumber"
+TaskSuggestion: "taskSuggestion"
+Url: "url"
+[[Prototype]]: Object
+Folder:
+DeletedItems: "deletedItems"
+Inbox: "inbox"
+Junk: "junk"
+[[Prototype]]: Object
+ItemNotificationMessageType:
+ErrorMessage: "errorMessage"
+InformationalMessage: "informationalMessage"
+InsightMessage: "insightMessage"
+ProgressIndicator: "progressIndicator"
+[[Prototype]]: Object
+ItemType:
+Appointment: "appointment"
+Message: "message"
+[[Prototype]]: Object
+LocationType:
+Custom: "custom"
+Room: "room"
+[[Prototype]]: Object
+ModuleType:
+Addins: "addins"
+[[Prototype]]: Object
+Month:
+Apr: "apr"
+Aug: "aug"
+Dec: "dec"
+Feb: "feb"
+Jan: "jan"
+Jul: "jul"
+Jun: "jun"
+Mar: "mar"
+May: "may"
+Nov: "nov"
+Oct: "oct"
+Sep: "sep"
+[[Prototype]]: Object
+RecipientType:
+DistributionList: "distributionList"
+ExternalUser: "externalUser"
+Other: "other"
+User: "user"
+[[Prototype]]: Object
+RecurrenceType:
+Daily: "daily"
+Monthly: "monthly"
+Weekday: "weekday"
+Weekly: "weekly"
+Yearly: "yearly"
+[[Prototype]]: Object
+ResponseType:
+Accepted: "accepted"
+Declined: "declined"
+None: "none"
+Organizer: "organizer"
+Tentative: "tentative"
+[[Prototype]]: Object
+RestVersion:
+Beta: "beta"
+v1_0: "v1.0"
+v2_0: "v2.0"
+[[Prototype]]: Object
+TimeZone:
+AUSCentralStandardTime: "AUS Central Standard Time"
+AUSEasternStandardTime: "AUS Eastern Standard Time"
+AfghanistanStandardTime: "Afghanistan Standard Time"
+AlaskanStandardTime: "Alaskan Standard Time"
+AleutianStandardTime: "Aleutian Standard Time"
+AltaiStandardTime: "Altai Standard Time"
+ArabStandardTime: "Arab Standard Time"
+ArabianStandardTime: "Arabian Standard Time"
+ArabicStandardTime: "Arabic Standard Time"
+ArgentinaStandardTime: "Argentina Standard Time"
+AstrakhanStandardTime: "Astrakhan Standard Time"
+AtlanticStandardTime: "Atlantic Standard Time"
+AusCentralWStandardTime: "Aus Central W. Standard Time"
+AzerbaijanStandardTime: "Azerbaijan Standard Time"
+AzoresStandardTime: "Azores Standard Time"
+BahiaStandardTime: "Bahia Standard Time"
+BangladeshStandardTime: "Bangladesh Standard Time"
+BelarusStandardTime: "Belarus Standard Time"
+BougainvilleStandardTime: "Bougainville Standard Time"
+CanadaCentralStandardTime: "Canada Central Standard Time"
+CapeVerdeStandardTime: "Cape Verde Standard Time"
+CaucasusStandardTime: "Caucasus Standard Time"
+CenAustraliaStandardTime: "Cen. Australia Standard Time"
+CentralAmericaStandardTime: "Central America Standard Time"
+CentralAsiaStandardTime: "Central Asia Standard Time"
+CentralBrazilianStandardTime: "Central Brazilian Standard Time"
+CentralEuropeStandardTime: "Central Europe Standard Time"
+CentralEuropeanStandardTime: "Central European Standard Time"
+CentralPacificStandardTime: "Central Pacific Standard Time"
+CentralStandardTime: "Central Standard Time"
+CentralStandardTime_Mexico: "Central Standard Time (Mexico)"
+ChathamIslandsStandardTime: "Chatham Islands Standard Time"
+ChinaStandardTime: "China Standard Time"
+CubaStandardTime: "Cuba Standard Time"
+DatelineStandardTime: "Dateline Standard Time"
+EAfricaStandardTime: "E. Africa Standard Time"
+EAustraliaStandardTime: "E. Australia Standard Time"
+EEuropeStandardTime: "E. Europe Standard Time"
+ESouthAmericaStandardTime: "E. South America Standard Time"
+EasterIslandStandardTime: "Easter Island Standard Time"
+EasternStandardTime: "Eastern Standard Time"
+EasternStandardTime_Mexico: "Eastern Standard Time (Mexico)"
+EgyptStandardTime: "Egypt Standard Time"
+EkaterinburgStandardTime: "Ekaterinburg Standard Time"
+FLEStandardTime: "FLE Standard Time"
+FijiStandardTime: "Fiji Standard Time"
+GMTStandardTime: "GMT Standard Time"
+GTBStandardTime: "GTB Standard Time"
+GeorgianStandardTime: "Georgian Standard Time"
+GreenlandStandardTime: "Greenland Standard Time"
+GreenwichStandardTime: "Greenwich Standard Time"
+HaitiStandardTime: "Haiti Standard Time"
+HawaiianStandardTime: "Hawaiian Standard Time"
+IndiaStandardTime: "India Standard Time"
+IranStandardTime: "Iran Standard Time"
+IsraelStandardTime: "Israel Standard Time"
+JordanStandardTime: "Jordan Standard Time"
+KaliningradStandardTime: "Kaliningrad Standard Time"
+KamchatkaStandardTime: "Kamchatka Standard Time"
+KoreaStandardTime: "Korea Standard Time"
+LibyaStandardTime: "Libya Standard Time"
+LineIslandsStandardTime: "Line Islands Standard Time"
+LordHoweStandardTime: "Lord Howe Standard Time"
+MagadanStandardTime: "Magadan Standard Time"
+MagallanesStandardTime: "Magallanes Standard Time"
+MarquesasStandardTime: "Marquesas Standard Time"
+MauritiusStandardTime: "Mauritius Standard Time"
+MidAtlanticStandardTime: "Mid-Atlantic Standard Time"
+MiddleEastStandardTime: "Middle East Standard Time"
+MontevideoStandardTime: "Montevideo Standard Time"
+MoroccoStandardTime: "Morocco Standard Time"
+MountainStandardTime: "Mountain Standard Time"
+MountainStandardTime_Mexico: "Mountain Standard Time (Mexico)"
+MyanmarStandardTime: "Myanmar Standard Time"
+NCentralAsiaStandardTime: "N. Central Asia Standard Time"
+NamibiaStandardTime: "Namibia Standard Time"
+NepalStandardTime: "Nepal Standard Time"
+NewZealandStandardTime: "New Zealand Standard Time"
+NewfoundlandStandardTime: "Newfoundland Standard Time"
+NorfolkStandardTime: "Norfolk Standard Time"
+NorthAsiaEastStandardTime: "North Asia East Standard Time"
+NorthAsiaStandardTime: "North Asia Standard Time"
+NorthKoreaStandardTime: "North Korea Standard Time"
+OmskStandardTime: "Omsk Standard Time"
+PacificSAStandardTime: "Pacific SA Standard Time"
+PacificStandardTime: "Pacific Standard Time"
+PacificStandardTime_Mexico: "Pacific Standard Time (Mexico)"
+PakistanStandardTime: "Pakistan Standard Time"
+ParaguayStandardTime: "Paraguay Standard Time"
+RomanceStandardTime: "Romance Standard Time"
+RussiaTimeZone3: "Russia Time Zone 3"
+RussiaTimeZone10: "Russia Time Zone 10"
+RussiaTimeZone11: "Russia Time Zone 11"
+RussianStandardTime: "Russian Standard Time"
+SAEasternStandardTime: "SA Eastern Standard Time"
+SAPacificStandardTime: "SA Pacific Standard Time"
+SAWesternStandardTime: "SA Western Standard Time"
+SEAsiaStandardTime: "SE Asia Standard Time"
+SaintPierreStandardTime: "Saint Pierre Standard Time"
+SakhalinStandardTime: "Sakhalin Standard Time"
+SamoaStandardTime: "Samoa Standard Time"
+SaratovStandardTime: "Saratov Standard Time"
+SingaporeStandardTime: "Singapore Standard Time"
+SouthAfricaStandardTime: "South Africa Standard Time"
+SriLankaStandardTime: "Sri Lanka Standard Time"
+SudanStandardTime: "Sudan Standard Time"
+SyriaStandardTime: "Syria Standard Time"
+TaipeiStandardTime: "Taipei Standard Time"
+TasmaniaStandardTime: "Tasmania Standard Time"
+TocantinsStandardTime: "Tocantins Standard Time"
+TokyoStandardTime: "Tokyo Standard Time"
+TomskStandardTime: "Tomsk Standard Time"
+TongaStandardTime: "Tonga Standard Time"
+TransbaikalStandardTime: "Transbaikal Standard Time"
+TurkeyStandardTime: "Turkey Standard Time"
+TurksAndCaicosStandardTime: "Turks And Caicos Standard Time"
+USEasternStandardTime: "US Eastern Standard Time"
+USMountainStandardTime: "US Mountain Standard Time"
+UTC: "UTC"
+UTCMINUS02: "UTC-02"
+UTCMINUS08: "UTC-08"
+UTCMINUS09: "UTC-09"
+UTCMINUS11: "UTC-11"
+UTCPLUS12: "UTC+12"
+UTCPLUS13: "UTC+13"
+UlaanbaatarStandardTime: "Ulaanbaatar Standard Time"
+VenezuelaStandardTime: "Venezuela Standard Time"
+VladivostokStandardTime: "Vladivostok Standard Time"
+WAustraliaStandardTime: "W. Australia Standard Time"
+WCentralAfricaStandardTime: "W. Central Africa Standard Time"
+WEuropeStandardTime: "W. Europe Standard Time"
+WMongoliaStandardTime: "W. Mongolia Standard Time"
+WestAsiaStandardTime: "West Asia Standard Time"
+WestBankStandardTime: "West Bank Standard Time"
+WestPacificStandardTime: "West Pacific Standard Time"
+YakutskStandardTime: "Yakutsk Standard Time"
+[[Prototype]]: Object
+UserProfileType:
+Enterprise: "enterprise"
+Office365: "office365"
+OutlookCom: "outlookCom"
+[[Prototype]]: Object
+WeekNumber:
+First: "first"
+Fourth: "fourth"
+Last: "last"
+Second: "second"
+Third: "third"
+[[Prototype]]: Object
+[[Prototype]]: Object
+OutlookBase:
+CreateAttachmentDetails: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+constructor: ƒ (e)
+length: 1
+name: "CreateAttachmentDetails"
+prototype:
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+[[Prototype]]: Object
+arguments: (...)
+caller: (...)
+[[FunctionLocation]]: outlook-web-16.01.js:20
+[[Prototype]]: ƒ ()
+[[Scopes]]: Scopes[2]
+SeriesTimeJsonConverter: ƒ (e)
+[[Prototype]]: Object
+Parameters: {BindingType: 'bindingType', CoercionType: 'coercionType', ValueFormat: 'valueFormat', FilterType: 'filterType', Columns: 'columns', …}
+PlatformType: {PC: 'PC', OfficeOnline: 'OfficeOnline', Mac: 'Mac', iOS: 'iOS', Android: 'Android', …}
+Promise: ƒ Promise()
+SeriesTime: ƒ e()
+ValueFormat: {Unformatted: 'unformatted', Formatted: 'formatted'}
+actions: {_association: a, associate: ƒ}
+addin: undefined
+auth: {getAccessToken: ƒ}
+cast: {item: {…}}
+context: (...)
+getAccessToken: ƒ (b)
+isSetSupported: undefined
+license: undefined
+message: undefined
+onReady: ƒ (a)
+onReadyInternal: ƒ (a)
+select: ƒ (a,b)
+sendTelemetryEvent: ƒ (a)
+storage: undefined
+telemetrySink: ƒ b()
+useShortNamespace: ƒ (a)
+_Internal: {PromiseImpl: {…}, OfficePromise: ƒ}
+get context: ƒ ()
+[[Prototype]]: Object
