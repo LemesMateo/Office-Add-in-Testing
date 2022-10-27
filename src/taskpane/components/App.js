@@ -4,7 +4,9 @@ import { DefaultButton } from "@fluentui/react";
 import Header from "./Header";
 import HeroList from "./HeroList";
 import Progress from "./Progress";
-
+import axios, { AxiosHeaders } from "axios";
+//const baseURL = "http://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/PostDocuments";
+const baseURL = "https://cdnet-demo-api.azurewebsites.net/api/dev?name=PostDocuments";
 
 /* global require */
 
@@ -62,7 +64,42 @@ export default class App extends React.Component {
       attachments    : []
    };
    let attachment = Office.context.mailbox.item.attachments[0];
-   Office.context.mailbox.item.getAttachmentContentAsync(attachment.id, console.log);
+   console.log("attachment: ", attachment);
+   Office.context.mailbox.item.getAttachmentContentAsync(attachment.id, (result)=> {
+   
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({
+      "FileName": attachment.name,
+      "FIle": result.value.content,
+      "Document_Type": 274,
+      "Container_Type": 14,
+      "Container_Code": "CAL-01",
+      "Company_Branch_Code": "1233",
+      "DocumentPropertyValues": [
+        {
+          "Name": "d_Titlee",
+          "Value": attachment.name
+        }
+      ]
+    });
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    
+    fetch("https://cdnet-demo-api.azurewebsites.net/api/dev?name=PostDocuments", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+   
+    
+   });
+
     if (serviceRequest.attachmentToken == "") {
       Office.context.mailbox.getCallbackTokenAsync(attachmentTokenCallback);
   }
