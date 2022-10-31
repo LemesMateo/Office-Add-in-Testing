@@ -4,7 +4,9 @@ import { DefaultButton } from "@fluentui/react";
 import Header from "./Header";
 import HeroList from "./HeroList";
 import Progress from "./Progress";
-import axios, { AxiosHeaders } from "axios";
+import { Formulario } from "./Formulario";
+import { Myselect } from "./MySelect";
+
 //const baseURL = "http://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/PostDocuments";
 const baseURL = "https://cdnet-demo-api.azurewebsites.net/api/dev?name=PostDocuments";
 
@@ -20,7 +22,7 @@ export default class App extends React.Component {
     };
   }
 
-  componentDidMount() {
+  /* componentDidMount() {
     this.setState({
       listItems: [
         {
@@ -37,7 +39,7 @@ export default class App extends React.Component {
         },
       ],
     });
-  };
+  }; */
 
 
 
@@ -120,11 +122,13 @@ export default class App extends React.Component {
 
     return (
       <div className="ms-welcome">
-        <Header logo={require("./../../../assets/logo-filled.png")} title={this.props.title} message="Benvenutto" />
-        <HeroList message="Descubre lo que puedes hacer con nuestro AddIn inutil!" items={this.state.listItems}>
+        <Header logo={require("./../../../assets/logo-filled.png")} title={this.props.title} message="Carpeta digital" />
+        {/* <Myselect/> */}
+        <HeroList message="Contenedor y tipo de documento" items={this.state.listItems}>
           <p className="ms-font-l">
-            Modifica algo que no se que es, y luego apreta <b>Run</b>.
+            Acá iría el <b>Formulario Dinamico</b>.
           </p>
+          <Formulario/>
           <DefaultButton className="ms-welcome__action" iconProps={{ iconName: "ChevronRight" }} onClick={this.click}>
             Run
           </DefaultButton>
