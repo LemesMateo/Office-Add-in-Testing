@@ -33,14 +33,15 @@ for (const input of formJson) {
 
 const validationSchema = Yup.object({...requiredFields});
 
-export const Formulario = () => {
+export const Formulario = ({submit}) => {
   return (
     <div>
-        <h1 className='ms-fontSize-su ms-fontWeight-semilight ms-fontColor-neutralPrimary'  >Dynamic Form</h1>
+        {/* <h1 className='ms-fontSize-su ms-fontWeight-semilight ms-fontColor-neutralPrimary'>Dynamic Form</h1> */}
         <Formik
             initialValues={ initialValues}
-            onSubmit={ (values) => {
-                console.log(values)
+            onSubmit={async (values) => {
+                submit();
+                console.log('Submit succeded');
             }}
             validationSchema={validationSchema}
         
@@ -79,8 +80,8 @@ export const Formulario = () => {
                         throw new Error(`Type ${type} is not supported`)
 
                     })}
-                        <button type='submit' >Submit</button>
-                        <button type="button" onClick={ handleReset }>Reset Form</button>
+                        <button type='submit'>Enviar</button>
+                        {/* <button type="button" onClick={ handleReset }>Reset Form</button> */}
                 </Form>
             )}
         </Formik>

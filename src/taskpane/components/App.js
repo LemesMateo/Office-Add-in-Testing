@@ -57,7 +57,6 @@ export default class App extends React.Component {
 
   
   click = async (e) => {
-    console.log("Objeto de click:", e);
     console.log("Office:", Office);
     let serviceRequest = {
       attachmentToken: '',
@@ -121,13 +120,13 @@ export default class App extends React.Component {
 
     return (
       <div className="ms-welcome">
-        <Header logo={require("./../../../assets/logo-filled.png")} title={this.props.title} message="Carpeta digital" />
+        {/* <Header logo={require("./../../../assets/logo-filled.png")} title={this.props.title} message="Carpeta digital" /> */}
         {/* <Myselect/> */}
         <div className="ms-welcome__main">
-          <Formulario/>
-          <DefaultButton className="ms-welcome__action " iconProps={{ iconName: "ChevronRight" }} onClick={this.click}>
+          <Formulario submit={this.click} />
+          {/* <DefaultButton className="ms-welcome__action " iconProps={{ iconName: "ChevronRight" }} onClick={this.click}>
             Run
-          </DefaultButton>
+          </DefaultButton> */}
         </div>
       </div>
     );
