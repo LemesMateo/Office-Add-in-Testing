@@ -1,4 +1,5 @@
 import { ErrorMessage, useField  } from 'formik'
+import * as React from "react";
 
 export const MyTextInput = ( {label, ...props} ) => {
     const [field] = useField(props)
@@ -7,7 +8,8 @@ export const MyTextInput = ( {label, ...props} ) => {
         <>
             <label htmlFor={props.id || props.name } >{ label }</label>
             <input className='text-input' { ...field } {...props} />
-            <ErrorMessage name={props.name} component="span" />
+            <br/>
+            <ErrorMessage name={props.name} component="span"  />
         </>
     )
 }

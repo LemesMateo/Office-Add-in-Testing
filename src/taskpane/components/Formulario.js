@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { MyTextInput } from './MyTextInput';
 import formJson from '../data/custom-form.json'
 import { Myselect } from './MySelect';
+import React from 'react';
 
 const initialValues = {};
 const requiredFields = {};
@@ -16,13 +17,13 @@ for (const input of formJson) {
 
     for (const rule of input.validations) {
         if (rule.type === 'required') {
-            schema = schema.required('Este campo es requerido');
+            schema = schema.required('This field is required');
         }
         if (rule.type === 'minLength') {
-            schema = schema.min( rule.value || 2, `Mínimo de ${rule.value || 2} caracteres`);
+            schema = schema.min( rule.value || 2, `At least ${rule.value || 2} characters required`);
         }
         if ( rule.type === 'email') {
-            schema = schema.email( `Revise el formato del email` );
+            schema = schema.email( `Check email format` );
         }
     }
 
@@ -34,7 +35,7 @@ const validationSchema = Yup.object({...requiredFields});
 export const Formulario = () => {
   return (
     <div>
-        <h1>Formulario</h1>
+        <h1>Dynamic Form</h1>
         <Formik
             initialValues={ initialValues}
             onSubmit={ (values) => {
@@ -47,13 +48,15 @@ export const Formulario = () => {
                 <Form noValidate>
                     { formJson.map( ({type, name, placeholder, label, options}) => {
                         if (type === 'input' || type === 'password' || type === 'email') {
-                            return <MyTextInput
+                            return <div><MyTextInput
                                         label={label}
                                         name={name}
                                         type={type}
                                         placeholder={placeholder}
                                         key={name}
                                     />
+                                    <br/>
+                                    </div>
                         } else if (type === 'select') {
                             return (
                                 <Myselect
@@ -72,7 +75,7 @@ export const Formulario = () => {
                             )
                         }
 
-                        throw new Error(`El type ${type} no es soportado`)
+                        throw new Error(`Type ${type} is not supported`)
 
                     })}
                         <button type='submit' >Submit</button>

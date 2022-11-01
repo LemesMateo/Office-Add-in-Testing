@@ -124,10 +124,7 @@ export default class App extends React.Component {
       <div className="ms-welcome">
         <Header logo={require("./../../../assets/logo-filled.png")} title={this.props.title} message="Carpeta digital" />
         {/* <Myselect/> */}
-        <HeroList message="Contenedor y tipo de documento" items={this.state.listItems}>
-          <p className="ms-font-l">
-            Acá iría el <b>Formulario Dinamico</b>.
-          </p>
+        <HeroList items={this.state.listItems}>
           <Formulario/>
           <DefaultButton className="ms-welcome__action" iconProps={{ iconName: "ChevronRight" }} onClick={this.click}>
             Run

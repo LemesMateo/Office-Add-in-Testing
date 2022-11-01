@@ -2,7 +2,7 @@
     {
         "type": "input",
         "name": "firstName",
-        "placeholder": "Fernando",
+        "placeholder": "Name...",
         "label": "First Name",
         "value": "",
         "validations": [
@@ -18,7 +18,7 @@
     {
         "type": "input",
         "name": "lastName",
-        "placeholder": "Herrera",
+        "placeholder": "Surname...",
         "label": "Last Name",
         "value": "",
         "validations": [
@@ -30,8 +30,8 @@
     {
         "type": "email",
         "name": "email",
-        "placeholder": "miemail@pagina.com",
-        "label": "email",
+        "placeholder": "myemail@something.com",
+        "label": "Email",
         "value": "",
         "validations": [
             {
@@ -44,20 +44,20 @@
     },
     {
         "type": "select",
-        "name": "favoriteGame",
-        "label": "Favorite Game",
+        "name": "options",
+        "label": "Options",
         "value": "",
         "options": [{
             "id": 1,
-            "label": "Super Smash"
+            "label": "Option 1"
         },
         {
             "id": 2,
-            "label": "Metal Gear"
+            "label": "Option 2"
         },
         {
             "id": 3,
-            "label": "Resident Evil"
+            "label": "Option 3"
         }],
         "validations": [
             {
