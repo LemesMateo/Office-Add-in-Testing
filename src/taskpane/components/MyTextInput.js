@@ -6,8 +6,8 @@ export const MyTextInput = ( {label, ...props} ) => {
 
     return (
         <>
-            <label htmlFor={props.id || props.name } >{ label }</label>
-            <input className='text-input' { ...field } {...props} />
+            <label htmlFor={props.id || props.name } className='ms-u-slideUpIn20 ms-font-xl ms-fontWeight-semilight' >{ label }</label>
+            <input className='ms-font-m ms-fontColor-neutralPrimary input ms-ListItem' { ...field } {...props} />
             <br/>
             <ErrorMessage name={props.name} component="span"  />
         </>

@@ -6,9 +6,9 @@ export const Myselect = ({label, ...props}) => {
 
     return ( 
         <>
-            <label htmlFor={props.id || props.name }>{label}</label>
-            <select {...field} {...props} />
-            <ErrorMessage name={props.name} component="span" />
+            <label htmlFor={props.id || props.name } className='ms-u-slideUpIn20 ms-font-xl ms-fontWeight-semilight' >{label}</label>
+            <select {...field} {...props} className='ms-font-m ms-fontColor-neutralPrimary input ms-ListItem'  />
+            <ErrorMessage name={props.name} component="span" className='ms-font-l ms-fontWeight-semilight'  />
         </>
     )
 }

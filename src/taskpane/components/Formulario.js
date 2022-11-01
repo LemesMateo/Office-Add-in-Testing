@@ -4,6 +4,7 @@ import { MyTextInput } from './MyTextInput';
 import formJson from '../data/custom-form.json'
 import { Myselect } from './MySelect';
 import React from 'react';
+// import { DefaultButton } from "@fluentui/react";
 
 const initialValues = {};
 const requiredFields = {};
@@ -35,7 +36,7 @@ const validationSchema = Yup.object({...requiredFields});
 export const Formulario = () => {
   return (
     <div>
-        <h1>Dynamic Form</h1>
+        <h1 className='ms-fontSize-su ms-fontWeight-semilight ms-fontColor-neutralPrimary'  >Dynamic Form</h1>
         <Formik
             initialValues={ initialValues}
             onSubmit={ (values) => {
@@ -48,7 +49,7 @@ export const Formulario = () => {
                 <Form noValidate>
                     { formJson.map( ({type, name, placeholder, label, options}) => {
                         if (type === 'input' || type === 'password' || type === 'email') {
-                            return <div><MyTextInput
+                            return <div className='ms-List' ><MyTextInput
                                         label={label}
                                         name={name}
                                         type={type}

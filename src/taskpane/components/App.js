@@ -2,10 +2,9 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import { DefaultButton } from "@fluentui/react";
 import Header from "./Header";
-import HeroList from "./HeroList";
 import Progress from "./Progress";
 import { Formulario } from "./Formulario";
-import { Myselect } from "./MySelect";
+
 
 //const baseURL = "http://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/PostDocuments";
 const baseURL = "https://cdnet-demo-api.azurewebsites.net/api/dev?name=PostDocuments";
@@ -124,12 +123,12 @@ export default class App extends React.Component {
       <div className="ms-welcome">
         <Header logo={require("./../../../assets/logo-filled.png")} title={this.props.title} message="Carpeta digital" />
         {/* <Myselect/> */}
-        <HeroList items={this.state.listItems}>
+        <div className="ms-welcome__main">
           <Formulario/>
-          <DefaultButton className="ms-welcome__action" iconProps={{ iconName: "ChevronRight" }} onClick={this.click}>
+          <DefaultButton className="ms-welcome__action " iconProps={{ iconName: "ChevronRight" }} onClick={this.click}>
             Run
           </DefaultButton>
-        </HeroList>
+        </div>
       </div>
     );
   }
