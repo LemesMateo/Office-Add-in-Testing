@@ -40,7 +40,7 @@ export const Formulario = ({submit}) => {
         <Formik
             initialValues={ initialValues}
             onSubmit={async (values) => {
-                submit();
+                submit(JSON.stringify(values));
                 console.log('Submit succeded');
             }}
             validationSchema={validationSchema}

@@ -58,6 +58,7 @@ export default class App extends React.Component {
   
   click = async (e) => {
     console.log("Office:", Office);
+    console.log("Recibido del submit de formulario:", e)
     let serviceRequest = {
       attachmentToken: '',
       ewsUrl         : Office.context.mailbox.ewsUrl,
@@ -69,6 +70,8 @@ export default class App extends React.Component {
    
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+
+    
     
     var raw = JSON.stringify({
       "FileName": attachment.name,
