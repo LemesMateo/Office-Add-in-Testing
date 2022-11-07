@@ -4,6 +4,9 @@ import { DefaultButton } from "@fluentui/react";
 import Header from "./Header";
 import Progress from "./Progress";
 import { Formulario } from "./Formulario";
+import { autoCompleteData } from "./data.js";
+import { autoCompleteData2 } from "./data2.js";
+import AutoComplete from "./Autocomplete";
 
 
 //const baseURL = "http://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/PostDocuments";
@@ -20,27 +23,6 @@ export default class App extends React.Component {
       listItems: [],
     };
   }
-
-  /* componentDidMount() {
-    this.setState({
-      listItems: [
-        {
-          icon: "Ribbon",
-          primaryText: "Conseguí más con Integración de Office",
-        },
-        {
-          icon: "Unlock",
-          primaryText: "Desbloquea funciones y funcionalidad",
-        },
-        {
-          icon: "Design",
-          primaryText: "Crea y visualiza como un pro",
-        },
-      ],
-    });
-  }; */
-
-
 
   attachmentTokenCallback = (asyncResult, userContext) => {
     if (asyncResult.status === "succeeded") {
@@ -98,15 +80,14 @@ export default class App extends React.Component {
     fetch("https://cdnet-demo-api.azurewebsites.net/api/dev?name=PostDocuments", requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
-      .catch(error => console.log('error', error));
-   
-    
+      .catch(error => console.log('error', error));    
    });
 
     if (serviceRequest.attachmentToken == "") {
       Office.context.mailbox.getCallbackTokenAsync(attachmentTokenCallback);
   }
   };
+  
 
   render() {
     const { title, isOfficeInitialized } = this.props;
@@ -121,15 +102,53 @@ export default class App extends React.Component {
       );
     }
 
+    // es posible que todo lo de aca abajo, tenga que ir arriba del render()
+    const [containerList, setContainerList] = React.useState([]);
+    const [containerSelect, setContainerSelect] = React.useState({});
+
+
+    const [docTypeList, setDocTypeList] = React.useState([]);
+    const [docTypeSelect, setDocTypeSelect] = React.useState({});
+
+    const dataContainers = (query) => {
+      var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+      
+      fetch(`cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/ContainersList?query=${query}`, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .then(result => setContainerList(result.data))
+        .catch(error => console.log('error', error));
+    }
+    const dataDocType = (query) => {
+      var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+      fetch(`cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/GetContainer/20?query=${query}`, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .then(result => setDocTypeList(result.data))
+        .catch(error => console.log('error', error));
+    }
+
+
+
+    const label1 = "Container";
+    const label2 = "Document Type";
+
     return (
       <div className="ms-welcome">
-        {/* <Header logo={require("./../../../assets/logo-filled.png")} title={this.props.title} message="Carpeta digital" /> */}
-        {/* <Myselect/> */}
         <div className="ms-welcome__main">
+          <AutoComplete data={containerList} label={label1} setSelection={setContainerSelect} fetchFn={dataContainers} />
+          <AutoComplete data={docTypeList} label={label2} setSelection={setDocTypeSelect} fetchFn={dataDocType} />
           <Formulario submit={this.click} />
-          {/* <DefaultButton className="ms-welcome__action " iconProps={{ iconName: "ChevronRight" }} onClick={this.click}>
-            Run
-          </DefaultButton> */}
         </div>
       </div>
     );

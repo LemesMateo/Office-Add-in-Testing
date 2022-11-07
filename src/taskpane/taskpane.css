@@ -9,6 +9,7 @@
      height: 100%;
      margin: 0;
      padding: 0;
+     background-color: #F5F5F4;
  }
  
  ul {
@@ -90,7 +91,7 @@ form {
 input, select {
     margin-top: 5px;
     outline: none;
-    padding: 10px;
+    padding: 10px;    
 }
 
 
@@ -103,6 +104,35 @@ span, .error-message {
     color: red;
 }
 
-.has-error {
-    border: 1px solid red;
+
+/* AutoComplete classes */
+
+.suggestions {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.suggestions li {
+    border: 1px solid #ddd; /* Add a border to all links */
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6; /* Grey background color */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove default text underline */
+    font-size: 18px; /* Increase the font-size */
+    color: black; /* Add a black text color */
+    display: block; /* Make it into a block element to fill the whole list */
+}
+
+.suggestions li:hover {
+    background-color: #eee;
+}
+
+
+li.active {
+    background-color: #CFE4FA;
+}
+
+.inputAutoComplete {
+    background: rgba(255,255,255,0.7);
 }
