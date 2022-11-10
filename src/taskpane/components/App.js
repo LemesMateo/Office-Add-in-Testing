@@ -7,6 +7,8 @@ import { Formulario } from "./Formulario";
 import { autoCompleteData } from "./data.js";
 import { autoCompleteData2 } from "./data2.js";
 import AutoComplete from "./Autocomplete";
+import AutoComplete2 from "./AutoComplete2";
+import { useFetch } from "../hooks/useFetch";
 
 
 //const baseURL = "http://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/PostDocuments";
@@ -92,6 +94,8 @@ export default class App extends React.Component {
   render() {
     const { title, isOfficeInitialized } = this.props;
 
+
+
     if (!isOfficeInitialized) {
       return (
         <Progress
@@ -103,51 +107,59 @@ export default class App extends React.Component {
     }
 
     // es posible que todo lo de aca abajo, tenga que ir arriba del render()
-    const [containerList, setContainerList] = React.useState([]);
-    const [containerSelect, setContainerSelect] = React.useState({});
+    // const [containerList, setContainerList] = React.useState([]);
+    // const [containerSelect, setContainerSelect] = React.useState({});
 
 
-    const [docTypeList, setDocTypeList] = React.useState([]);
-    const [docTypeSelect, setDocTypeSelect] = React.useState({});
+    // const [docTypeList, setDocTypeList] = React.useState([]);
+    // const [docTypeSelect, setDocTypeSelect] = React.useState({});
 
-    const dataContainers = (query) => {
-      var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-      };
+    // const dataContainers = (query) => {
+    //   var requestOptions = {
+    //     method: 'GET',
+    //     headers: myHeaders,
+    //     body: raw,
+    //     redirect: 'follow'
+    //   };
       
-      fetch(`cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/ContainersList?query=${query}`, requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .then(result => setContainerList(result.data))
-        .catch(error => console.log('error', error));
-    }
-    const dataDocType = (query) => {
-      var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-      };
-      fetch(`cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/GetContainer/20?query=${query}`, requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .then(result => setDocTypeList(result.data))
-        .catch(error => console.log('error', error));
-    }
+    //   fetch(`cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/ContainersList?query=${query}`, requestOptions)
+    //     .then(response => response.text())
+    //     .then(result => console.log(result))
+    //     .then(result => setContainerList(result.data))
+    //     .catch(error => console.log('error', error));
+    // }
+    // const dataDocType = (query) => {
+    //   var requestOptions = {
+    //     method: 'GET',
+    //     headers: myHeaders,
+    //     body: raw,
+    //     redirect: 'follow'
+    //   };
+    //   fetch(`cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/GetContainer/20?query=${query}`, requestOptions)
+    //     .then(response => response.text())
+    //     .then(result => console.log(result))
+    //     .then(result => setDocTypeList(result.data))
+    //     .catch(error => console.log('error', error));
+    // }
 
 
 
     const label1 = "Container";
     const label2 = "Document Type";
 
+    const [docTypeData, setDocTypeData] = React.useState({});
+
+    const fetch2 = `https://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/GetContainer/20?query=`
+    // const fetchDocType = () => {
+    //   const { data, error, loading } = useFetch(`https://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/GetContainer/20?query=`, query);
+    // }
+
     return (
       <div className="ms-welcome">
         <div className="ms-welcome__main">
-          <AutoComplete data={containerList} label={label1} setSelection={setContainerSelect} fetchFn={dataContainers} />
-          <AutoComplete data={docTypeList} label={label2} setSelection={setDocTypeSelect} fetchFn={dataDocType} />
+          {/* <AutoComplete data={containerList} label={label1} setSelection={setContainerSelect} fetchFn={dataContainers} />
+          <AutoComplete data={docTypeList} label={label2} setSelection={setDocTypeSelect} fetchFn={dataDocType} /> */}
+          <AutoComplete2 label={label2} fetchDir={fetch2} dataSet={setDocTypeData} />
           <Formulario submit={this.click} />
         </div>
       </div>

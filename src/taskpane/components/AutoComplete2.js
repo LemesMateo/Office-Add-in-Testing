@@ -1,24 +1,62 @@
+
 import * as React from "react";
 
+import { useFetch } from "../hooks/useFetch";
 
 
-const AutoComplete = ({data, label, fetchFn, setSelection}) => {
+const AutoComplete2 = ({label, fetchDir, dataSet}) => {
     const [suggestions, setSuggestions] = React.useState([]);
     const [suggestionIndex, setSuggestionIndex] = React.useState(0);
     const [suggestionsActive, setSuggestionsActive] = React.useState(false);
     const [value, setValue] = React.useState("");
 
+    // const data = ({fetchDir, query}) => {
+        // var requestOptions = {
+        //     method: 'GET',
+        //     headers: myHeaders,
+        //     body: raw,
+        //     redirect: 'follow'
+        //   };
+        //   fetch(`${fetchDir}?query=${query}`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => console.log(result))
+        //     .then(result => setList(result.data))
+        //     .catch(error => console.log('error', error));
+    
+    // }
+
+    const fetchFn = ( fetchUrl, query) => {
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+          };
+          fetch(`${fetchUrl}?query=${query}`, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .then(result => {
+                setSuggestions(result.data);
+                setSuggestionsActive(true);
+            })
+            .catch(error => console.log('error', error));
+    }
+
+    
+
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
         setValue(query);
         if (query.length > 1) {
-            fetchFn(query);
-            const filterSuggestions = data.filter(
-                (suggestion) => 
-                    suggestion.toLowerCase().indexOf(query) > -1
-            );
-            setSuggestions(filterSuggestions);
-            setSuggestionsActive(true);
+            // const { data, error, loading } = useFetch(fetchDir, query);
+            // const filterSuggestions = data.filter(
+            //     (suggestion) => 
+            //         suggestion.toLowerCase().indexOf(query) > -1
+            // );
+            fetchFn( fetchDir, query );
+
+            // setSuggestions(filterSuggestions);
+            // setSuggestionsActive(true);
         } else {
             setSuggestionsActive(false);
         }
@@ -37,7 +75,6 @@ const AutoComplete = ({data, label, fetchFn, setSelection}) => {
                 return;
             }
             setSuggestionIndex(suggestionIndex - 1);
-            setSelection(data[suggestionIndex - 1]);
         }
         // DOWN ARROW
         else if (e.keyCode === 40) {
@@ -45,13 +82,11 @@ const AutoComplete = ({data, label, fetchFn, setSelection}) => {
                 return;
             }
             setSuggestionIndex(suggestionIndex + 1);
-            setSelection(data[suggestionIndex + 1]);
         }
         // ENTER
         else if (e.keyCode === 13) {
             setValue(suggestions[suggestionIndex]);
             setSuggestionIndex(0);
-            setSelection(data[0]);
             setSuggestionsActive(false);
         }
     };
@@ -93,4 +128,4 @@ const AutoComplete = ({data, label, fetchFn, setSelection}) => {
     );
 };
 
-export default AutoComplete;
+export default AutoComplete2;
