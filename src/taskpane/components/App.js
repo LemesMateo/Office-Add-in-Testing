@@ -9,6 +9,7 @@ import { autoCompleteData2 } from "./data2.js";
 import AutoComplete from "./Autocomplete";
 import AutoComplete2 from "./AutoComplete2";
 import { useFetch } from "../hooks/useFetch";
+import { useFetchData } from "../hooks/useFetchData";
 
 
 //const baseURL = "http://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/PostDocuments";
@@ -147,20 +148,29 @@ export default class App extends React.Component {
     const label1 = "Container";
     const label2 = "Document Type";
 
-    const [docTypeData, setDocTypeData] = React.useState({});
+    // const [docTypeData, setDocTypeData] = React.useState({});
 
-    const fetch2 = `https://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/GetContainer/20?query=`
+    const fetch1 = `https://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/ContainersList?query=`;
+    const fetch2 = `https://cdnet-demo-api.azurewebsites.net/api/dev?name=GetContainers&method=get&query=leg`; // hay que usar con post
     // const fetchDocType = () => {
     //   const { data, error, loading } = useFetch(`https://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/GetContainer/20?query=`, query);
     // }
+
+    // const BASE_URL = 'cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/ContainersList?query=conta'
+    // const { data, loading, error } = useFetchData(BASE_URL)
 
     return (
       <div className="ms-welcome">
         <div className="ms-welcome__main">
           {/* <AutoComplete data={containerList} label={label1} setSelection={setContainerSelect} fetchFn={dataContainers} />
           <AutoComplete data={docTypeList} label={label2} setSelection={setDocTypeSelect} fetchFn={dataDocType} /> */}
-          <AutoComplete2 label={label2} fetchDir={fetch2} dataSet={setDocTypeData} />
+          <AutoComplete2 label={label1}/>
+          {/* {data.map((element) => (
+         		 <p key={element.id}>{element.name}</p>
+        	))} */}
+          
           <Formulario submit={this.click} />
+          
         </div>
       </div>
     );

@@ -4,11 +4,13 @@ import * as React from "react";
 import { useFetch } from "../hooks/useFetch";
 
 
-const AutoComplete2 = ({label, fetchDir, dataSet}) => {
+const AutoComplete2 = ({label}) => {
     const [suggestions, setSuggestions] = React.useState([]);
     const [suggestionIndex, setSuggestionIndex] = React.useState(0);
     const [suggestionsActive, setSuggestionsActive] = React.useState(false);
     const [value, setValue] = React.useState("");
+    const [error, setError] = React.useState("");
+    const [loading, setLoading] = React.useState(false);
 
     // const data = ({fetchDir, query}) => {
         // var requestOptions = {
@@ -25,38 +27,47 @@ const AutoComplete2 = ({label, fetchDir, dataSet}) => {
     
     // }
 
-    const fetchFn = ( fetchUrl, query) => {
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-          };
-          fetch(`${fetchUrl}?query=${query}`, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .then(result => {
-                setSuggestions(result.data);
-                setSuggestionsActive(true);
-            })
-            .catch(error => console.log('error', error));
-    }
+    // const fetchFn = ( fetchUrl, query) => {
+    //     var myHeaders = new Headers();
+    //     myHeaders.append("Content-Type", "application/json");
+    //     var requestOptions = {
+    //         method: 'GET',
+    //         headers: myHeaders,
+    //         redirect: 'follow'
+    //       };
+    //       fetch(`${fetchUrl}?query=${query}`, requestOptions)
+    //         .then(response => response.text())
+    //         .then(result => console.log(result))
+    //         .then(result => {
+    //             setSuggestions(result.data);
+    //             setSuggestionsActive(true);
+    //         })
+    //         .catch(error => console.log('error', error));
+    // }
 
     
 
     const handleChange = (e) => {
+        
         const query = e.target.value.toLowerCase();
         setValue(query);
         if (query.length > 1) {
-            // const { data, error, loading } = useFetch(fetchDir, query);
+            console.log("Query:", query);
+            // const { error, loading } = useFetch(query, setSuggestions);
+            fetch(`https://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/ContainersList?query=${query}`)
+                .then(response => response.json())
+                .then( response => setSuggestions(response.data))
+                .catch(setError)
+                .finally(() => setLoading(false))
             // const filterSuggestions = data.filter(
             //     (suggestion) => 
             //         suggestion.toLowerCase().indexOf(query) > -1
             // );
-            fetchFn( fetchDir, query );
 
-            // setSuggestions(filterSuggestions);
-            // setSuggestionsActive(true);
+            // fetchFn( fetchDir, query );
+
+            // setSuggestions(data);
+            setSuggestionsActive(true);
         } else {
             setSuggestionsActive(false);
         }
@@ -75,6 +86,7 @@ const AutoComplete2 = ({label, fetchDir, dataSet}) => {
                 return;
             }
             setSuggestionIndex(suggestionIndex - 1);
+            // dataSet(data[suggestionIndex - 1]);
         }
         // DOWN ARROW
         else if (e.keyCode === 40) {
@@ -82,26 +94,31 @@ const AutoComplete2 = ({label, fetchDir, dataSet}) => {
                 return;
             }
             setSuggestionIndex(suggestionIndex + 1);
+            // dataSet(data[suggestionIndex + 1]);
         }
         // ENTER
         else if (e.keyCode === 13) {
             setValue(suggestions[suggestionIndex]);
             setSuggestionIndex(0);
+            // dataSet(data[0]);
             setSuggestionsActive(false);
         }
     };
 
     const Suggestions = () => {
+        console.log("Suggestions:", suggestions);
         return (
             <ul className="suggestions" >
-                {data.map((suggestion, index) => {
+                { 
+                    
+                    suggestions.map((suggestion, index) => {
                     return (
                         <li
                             className={index === suggestionIndex ? "active" : ""}
-                            key={index}
+                            key={suggestion.data.id}
                             onClick={handleClick}
                         >
-                            {suggestion.Name}
+                            {suggestion.name}
                         </li>
                     )
                 })}
