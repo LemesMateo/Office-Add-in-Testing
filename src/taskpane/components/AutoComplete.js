@@ -1,23 +1,29 @@
+
 import * as React from "react";
 
 
 
-const AutoComplete = ({data, label, fetchFn, setSelection}) => {
+const AutoComplete = ({label, fetchUrl, displayName, keyName }) => {
     const [suggestions, setSuggestions] = React.useState([]);
     const [suggestionIndex, setSuggestionIndex] = React.useState(0);
     const [suggestionsActive, setSuggestionsActive] = React.useState(false);
     const [value, setValue] = React.useState("");
+    const [error, setError] = React.useState("");
+    const [loading, setLoading] = React.useState(false);
+   
 
     const handleChange = (e) => {
+        
         const query = e.target.value.toLowerCase();
         setValue(query);
         if (query.length > 1) {
-            fetchFn(query);
-            const filterSuggestions = data.filter(
-                (suggestion) => 
-                    suggestion.toLowerCase().indexOf(query) > -1
-            );
-            setSuggestions(filterSuggestions);
+            console.log("Query:", query);
+            
+            fetch(`${fetchUrl}&query=${query}`)
+                .then(response => response.json())
+                .then( response => setSuggestions(response.data))
+                .catch(setError)
+                .finally(() => setLoading(false))
             setSuggestionsActive(true);
         } else {
             setSuggestionsActive(false);
@@ -37,7 +43,7 @@ const AutoComplete = ({data, label, fetchFn, setSelection}) => {
                 return;
             }
             setSuggestionIndex(suggestionIndex - 1);
-            setSelection(data[suggestionIndex - 1]);
+            // dataSet(data[suggestionIndex - 1]);
         }
         // DOWN ARROW
         else if (e.keyCode === 40) {
@@ -45,13 +51,13 @@ const AutoComplete = ({data, label, fetchFn, setSelection}) => {
                 return;
             }
             setSuggestionIndex(suggestionIndex + 1);
-            setSelection(data[suggestionIndex + 1]);
+            // dataSet(data[suggestionIndex + 1]);
         }
         // ENTER
         else if (e.keyCode === 13) {
             setValue(suggestions[suggestionIndex]);
             setSuggestionIndex(0);
-            setSelection(data[0]);
+            // dataSet(data[0]);
             setSuggestionsActive(false);
         }
     };
@@ -59,14 +65,16 @@ const AutoComplete = ({data, label, fetchFn, setSelection}) => {
     const Suggestions = () => {
         return (
             <ul className="suggestions" >
-                {data.map((suggestion, index) => {
+                { 
+                    
+                    suggestions.map((suggestion, index) => {
                     return (
                         <li
                             className={index === suggestionIndex ? "active" : ""}
-                            key={index}
+                            key={suggestion[keyName]}
                             onClick={handleClick}
                         >
-                            {suggestion.Name}
+                            {suggestion[displayName]}
                         </li>
                     )
                 })}

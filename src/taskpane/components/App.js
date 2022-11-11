@@ -4,16 +4,12 @@ import { DefaultButton } from "@fluentui/react";
 import Header from "./Header";
 import Progress from "./Progress";
 import { Formulario } from "./Formulario";
-import { autoCompleteData } from "./data.js";
-import { autoCompleteData2 } from "./data2.js";
 import AutoComplete from "./Autocomplete";
-import AutoComplete2 from "./AutoComplete2";
-import { useFetch } from "../hooks/useFetch";
-import { useFetchData } from "../hooks/useFetchData";
+
 
 
 //const baseURL = "http://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/PostDocuments";
-const baseURL = "https://cdnet-demo-api.azurewebsites.net/api/dev?name=PostDocuments";
+// const baseURL = "https://cdnet-demo-api.azurewebsites.net/api/dev?name=PostDocuments";
 
 /* global require */
 
@@ -95,8 +91,6 @@ export default class App extends React.Component {
   render() {
     const { title, isOfficeInitialized } = this.props;
 
-
-
     if (!isOfficeInitialized) {
       return (
         <Progress
@@ -107,67 +101,21 @@ export default class App extends React.Component {
       );
     }
 
-    // es posible que todo lo de aca abajo, tenga que ir arriba del render()
-    // const [containerList, setContainerList] = React.useState([]);
-    // const [containerSelect, setContainerSelect] = React.useState({});
-
-
-    // const [docTypeList, setDocTypeList] = React.useState([]);
-    // const [docTypeSelect, setDocTypeSelect] = React.useState({});
-
-    // const dataContainers = (query) => {
-    //   var requestOptions = {
-    //     method: 'GET',
-    //     headers: myHeaders,
-    //     body: raw,
-    //     redirect: 'follow'
-    //   };
-      
-    //   fetch(`cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/ContainersList?query=${query}`, requestOptions)
-    //     .then(response => response.text())
-    //     .then(result => console.log(result))
-    //     .then(result => setContainerList(result.data))
-    //     .catch(error => console.log('error', error));
-    // }
-    // const dataDocType = (query) => {
-    //   var requestOptions = {
-    //     method: 'GET',
-    //     headers: myHeaders,
-    //     body: raw,
-    //     redirect: 'follow'
-    //   };
-    //   fetch(`cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/GetContainer/20?query=${query}`, requestOptions)
-    //     .then(response => response.text())
-    //     .then(result => console.log(result))
-    //     .then(result => setDocTypeList(result.data))
-    //     .catch(error => console.log('error', error));
-    // }
-
-
-
     const label1 = "Container";
     const label2 = "Document Type";
-
-    // const [docTypeData, setDocTypeData] = React.useState({});
-
-    const fetch1 = `https://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/ContainersList?query=`;
-    const fetch2 = `https://cdnet-demo-api.azurewebsites.net/api/dev?name=GetContainers&method=get&query=leg`; // hay que usar con post
-    // const fetchDocType = () => {
-    //   const { data, error, loading } = useFetch(`https://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/GetContainer/20?query=`, query);
-    // }
-
-    // const BASE_URL = 'cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/ContainersList?query=conta'
-    // const { data, loading, error } = useFetchData(BASE_URL)
+    const fetch1 = `https://cdnet-demo-api.azurewebsites.net/api/dev?name=Containerslist&method=get`; //Este funciona.
+    const fetch2 = `https://cdnet-demo-api.azurewebsites.net/api/dev?name=GetContainers&method=get&query=leg`; // Este no. (Hay que usar con post)
+   
 
     return (
       <div className="ms-welcome">
         <div className="ms-welcome__main">
-          {/* <AutoComplete data={containerList} label={label1} setSelection={setContainerSelect} fetchFn={dataContainers} />
-          <AutoComplete data={docTypeList} label={label2} setSelection={setDocTypeSelect} fetchFn={dataDocType} /> */}
-          <AutoComplete2 label={label1}/>
-          {/* {data.map((element) => (
-         		 <p key={element.id}>{element.name}</p>
-        	))} */}
+          <AutoComplete 
+            label={label1} 
+            displayName="name" 
+            keyName="id" 
+            fetchUrl="https://cdnet-demo-api.azurewebsites.net/api/dev?name=Containerslist&method=get" 
+          />
           
           <Formulario submit={this.click} />
           
