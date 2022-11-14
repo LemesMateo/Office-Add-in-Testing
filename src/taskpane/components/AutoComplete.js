@@ -3,7 +3,7 @@ import * as React from "react";
 
 
 
-const AutoComplete = ({label, fetchUrl, displayName, keyName }) => {
+const AutoComplete = ({label, fetchUrl, displayName, keyName, setSelected }) => {
     const [suggestions, setSuggestions] = React.useState([]);
     const [suggestionIndex, setSuggestionIndex] = React.useState(0);
     const [suggestionsActive, setSuggestionsActive] = React.useState(false);
@@ -33,11 +33,16 @@ const AutoComplete = ({label, fetchUrl, displayName, keyName }) => {
     const handleClick = (e) => {
         setSuggestions([]);
         setValue(e.target.innerText);
+        let selected = suggestions.find( (x) => x[displayName] === e.target.innerText);
+        setSelected(selected);
+        console.log("selected:", selected);
+        // console.log("setSelected:", setSelected);
+        // console.log("suggestions[suggestionIndex](del click):", e.target);
         setSuggestionsActive(false);
     };
 
     const handleKeyDown = (e) => {
-        // UP ARROW
+        // UP ARROW - FLECHA ARRIBA
         if (e.keyCode === 38) {
             if( suggestionIndex === 0) {
                 return;
@@ -45,7 +50,7 @@ const AutoComplete = ({label, fetchUrl, displayName, keyName }) => {
             setSuggestionIndex(suggestionIndex - 1);
             // dataSet(data[suggestionIndex - 1]);
         }
-        // DOWN ARROW
+        // DOWN ARROW - FLECHA ABAJO
         else if (e.keyCode === 40) {
             if (suggestionIndex - 1 === suggestions.length) {
                 return;
@@ -55,9 +60,10 @@ const AutoComplete = ({label, fetchUrl, displayName, keyName }) => {
         }
         // ENTER
         else if (e.keyCode === 13) {
-            setValue(suggestions[suggestionIndex]);
+            setValue(suggestions[suggestionIndex][displayName]);
+            setSelected(suggestions[suggestionIndex]);
+            console.log("suggestions[suggestionIndex](del enter):", suggestions[suggestionIndex]);
             setSuggestionIndex(0);
-            // dataSet(data[0]);
             setSuggestionsActive(false);
         }
     };
@@ -88,7 +94,7 @@ const AutoComplete = ({label, fetchUrl, displayName, keyName }) => {
             <label htmlFor={label} className='ms-u-slideUpIn20 ms-font-xl ms-fontWeight-semilight' >{label}</label>
             <br/>
             <input
-                className="inputAutoComplete"
+                className="inputAutoComplete ms-font-m ms-fontColor-neutralPrimary input ms-ListItem"
                 type='text'
                 placeholder={label}
                 value={value}

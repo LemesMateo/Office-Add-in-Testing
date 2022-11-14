@@ -4,6 +4,7 @@ import { MyTextInput } from './MyTextInput';
 import formJson from '../data/custom-form.json'
 import { Myselect } from './MySelect';
 import React from 'react';
+import AutoComplete from './Autocomplete';
 // import { DefaultButton } from "@fluentui/react";
 
 const initialValues = {};
@@ -75,8 +76,8 @@ export const Formulario = ({submit}) => {
 
                                 </Myselect>
                             )
-                        }
-
+                        } 
+                        
                         throw new Error(`Type ${type} is not supported`)
 
                     })}
