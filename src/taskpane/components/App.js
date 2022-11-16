@@ -21,8 +21,10 @@ export default class App extends React.Component {
     this.state = {
       listItems: [],
       container: undefined,
-      documentType: null
+      documentType: null,
+      formConfig: null
     };
+    this.setDocumentType = this.setDocumentType.bind(this)
   };
   
 
@@ -45,6 +47,7 @@ export default class App extends React.Component {
   click = async (e) => {
     console.log("Office:", Office);
     console.log("Recibido del submit de formulario:", e)
+    
     let serviceRequest = {
       attachmentToken: '',
       ewsUrl         : Office.context.mailbox.ewsUrl,
@@ -57,22 +60,43 @@ export default class App extends React.Component {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    
-    
-    var raw = JSON.stringify({
+    var data = {
       "FileName": attachment.name,
       "FIle": result.value.content,
-      "Document_Type": 274,
-      "Container_Type": 14,
-      "Container_Code": "CAL-01",
-      "Company_Branch_Code": "1233",
+      "Document_Type": this.state.documentType.id,
+      "Container_Type": this.state.container.typeId,
+      "Container_Code": this.state.container.containerCode,
+      "Company_Branch_Code": this.state.container.branchCode,
       "DocumentPropertyValues": [
         {
-          "Name": "d_Titlee",
+          "Name": "d_Title",
           "Value": attachment.name
         }
       ]
+    };
+    
+    var dataForm = JSON.parse(e);
+
+    Object.keys(dataForm).forEach(key => {
+      console.log(key, dataForm[key]);
+      if (key === "d_Title")
+      {
+        data.DocumentPropertyValues.find(x=> x.Name === "d_Title").Value == dataForm[key];
+      }
+      else
+      {
+        data.DocumentPropertyValues.push(
+          {
+            "Name": key,
+            "Value": dataForm[key]
+          }
+        );
+      }
     });
+    console.log("data:", data);     
+     
+     
+    var raw = JSON.stringify(data);
     
     var requestOptions = {
       method: 'POST',
@@ -96,22 +120,57 @@ export default class App extends React.Component {
   
   
   setDocumentType = (paramDocumentType) => {
-    this.state.documentType = paramDocumentType;
-    console.log("setDocumentType desde App.js", this.state.documentType);
-  }
+    this.setState({
+      documentType : paramDocumentType
+    });
+    if (paramDocumentType && paramDocumentType.id)
+    {
+      console.log("if paramDocumentType:" ,paramDocumentType);
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+      
+      fetch(`https://cdnet-demo-api.azurewebsites.net/api/dev?name=GetConfigurationDocumentsTypeProperties&method=get&documentTypeId=${paramDocumentType.id}`, requestOptions)
+        .then(response => response.text())
+        .then(result => {
+          console.log("Getconfig:",result);
+          console.log("container desde dentro del Fetch:",this.state.container);
+          this.setState({
+            formConfig: JSON.parse(result).data
+          });
+      })
+        .catch(error => console.log('error', error));    
+      
   
+    } 
+    else
+    {
+      console.log("else paramDocumentType:" ,paramDocumentType);
+    }
+    
+    
+  }
+
+
+
+  setContainer = (paramContainer) => {
+    // this.state.container = paramContainer;
+    this.setState({
+      container : paramContainer
+    });
+    
+  }
+
+
   render() {
     
     const { title, isOfficeInitialized } = this.props;
 
-    setContainer = (paramContainer) => {
-      // this.state.container = paramContainer;
-      this.setState(st => {
-        st.container = paramContainer
-      });
-      console.log("setContainer desde App.js", this.state.container);
-    }
-
+    
     
     
     // const [selectedContainer, setSelectedContainer] = React.useState();
@@ -136,32 +195,31 @@ export default class App extends React.Component {
         <div className="ms-welcome__main">
           <AutoComplete 
             label={label1} 
-            setSelected={setContainer}
+            setSelected={this.setContainer}
             displayName="name" 
             keyName="id" 
             fetchUrl="https://cdnet-demo-api.azurewebsites.net/api/dev?name=Containerslist&method=get" 
           />
 
           
-          <p>
-            Resultado:
-          { this.state.container == undefined ? "undefined" : "defined"}
-          </p>
-
 
           {
-            this.state.container != undefined &&
+            this.state.container  &&
             <AutoComplete
-              label={label2}
-              setSelected={this.setDocumentType}
-              displayName="name"
-              keyName="id"
-              fetchUrl={`https://cdnet-demo-api.azurewebsites.net/api/dev?name=GetContainer/${this.state.container.id}&method=get&id=${this.state.container.id}`}
-            />
+            label={label2}
+            setSelected={this.setDocumentType}
+            displayName="name"
+            keyName="id"
+            fetchUrl={`https://cdnet-demo-api.azurewebsites.net/api/dev?name=GetContainer/${this.state.container.id}&method=get&id=${this.state.container.id}`}
+          /> 
+
           }
 
+          {
+            this.state.documentType && this.state.formConfig &&
+            <Formulario submit={this.click} config={this.state.formConfig} />
+          }
           
-          <Formulario submit={this.click} />
           
         </div>
       </div>

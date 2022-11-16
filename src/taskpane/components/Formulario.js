@@ -7,9 +7,9 @@ import React from 'react';
 import AutoComplete from './Autocomplete';
 // import { DefaultButton } from "@fluentui/react";
 
-const initialValues = {};
-const requiredFields = {};
-
+//const initialValues = {};
+//const requiredFields = {};
+/*
 for (const input of formJson) {
     initialValues[input.name] = input.value;
 
@@ -31,11 +31,40 @@ for (const input of formJson) {
 
     requiredFields[input.name] = schema;
 }
+*/
 
-const validationSchema = Yup.object({...requiredFields});
 
-export const Formulario = ({submit}) => {
-  return (
+
+export const Formulario = ({submit, config}) => {
+
+    var initialValues = {};
+    var requiredFields = {};
+
+    for (const input of config) {
+        initialValues[input.name] = input.value;
+    
+        if( !input.validations ) continue;
+    
+        let schema = Yup.string()
+    
+        for (const rule of input.validations) {
+            if (rule.type === 'required') {
+                schema = schema.required('This field is required');
+            }
+            if (rule.type === 'minLength') {
+                schema = schema.min( rule.value || 2, `At least ${rule.value || 2} characters required`);
+            }
+            if ( rule.type === 'email') {
+                schema = schema.email( `Check email format` );
+            }
+        }
+    
+        requiredFields[input.name] = schema;
+        console.log("configuró:", input.name);
+    }
+
+    const validationSchema = Yup.object({...requiredFields});
+    return (
     <div>
         {/* <h1 className='ms-fontSize-su ms-fontWeight-semilight ms-fontColor-neutralPrimary'>Dynamic Form</h1> */}
         <Formik
@@ -49,7 +78,9 @@ export const Formulario = ({submit}) => {
         >
             { ({handleReset}) => (
                 <Form noValidate>
-                    { formJson.map( ({type, name, placeholder, label, options}) => {
+                    { config.map( ({type, name, placeholder, label, options}) => {
+                        if (type === "String") type = "input";
+                        if (type === "Integer") type = "input";
                         if (type === 'input' || type === 'password' || type === 'email') {
                             return <div className='ms-List' ><MyTextInput
                                         label={label}
