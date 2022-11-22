@@ -9,26 +9,7 @@ initializeIcons();
 
 let isOfficeInitialized = false;
 
-let dialog = null;
-
-/* Office.context.ui.displayDialogAsync('https://domain/popup.html?id=123', {height: 45, width: 55}, function(result) {
-  dialog = result.value;
-  //Listen for messages coming from the dialog
-  dialog.addEventHandler(
-    Microsoft.Office.WebExtension.EventType.DialogMessageReceived, processMessage
-  );
-});
-
-function processMessage(arg) {
-  console.log(arg.message);
-  dialog.close();
-}
-
-Office.initialize = function () {
-  Office.context.ui.messageParent('Hello from the dialog!!!');
-} */
-
-const title = "Mateo's Task Pane Add-in";
+const title = "Digital Folder Add-in";
 
 const render = (Component) => {
   ReactDOM.render(
@@ -54,8 +35,3 @@ if (module.hot) {
     render(NextApp);
   });
 }
-
-
-/* Office.context.mailbox.addHandlerAsync(Office.EventType.ItemChanged, function(eventArgs){
-  //Update UI based on the new current item... this should check for null item
-}); */

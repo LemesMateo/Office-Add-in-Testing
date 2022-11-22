@@ -1,39 +1,8 @@
-import { Form, Formik } from 'formik';
+import { Form, Formik, FormikBag } from 'formik';
 import * as Yup from 'yup';
 import { MyTextInput } from './MyTextInput';
-import formJson from '../data/custom-form.json'
 import { Myselect } from './MySelect';
 import React from 'react';
-import AutoComplete from './Autocomplete';
-// import { DefaultButton } from "@fluentui/react";
-
-//const initialValues = {};
-//const requiredFields = {};
-/*
-for (const input of formJson) {
-    initialValues[input.name] = input.value;
-
-    if( !input.validations ) continue;
-
-    let schema = Yup.string()
-
-    for (const rule of input.validations) {
-        if (rule.type === 'required') {
-            schema = schema.required('This field is required');
-        }
-        if (rule.type === 'minLength') {
-            schema = schema.min( rule.value || 2, `At least ${rule.value || 2} characters required`);
-        }
-        if ( rule.type === 'email') {
-            schema = schema.email( `Check email format` );
-        }
-    }
-
-    requiredFields[input.name] = schema;
-}
-*/
-
-
 
 export const Formulario = ({submit, config}) => {
 
@@ -66,7 +35,6 @@ export const Formulario = ({submit, config}) => {
     const validationSchema = Yup.object({...requiredFields});
     return (
     <div>
-        {/* <h1 className='ms-fontSize-su ms-fontWeight-semilight ms-fontColor-neutralPrimary'>Dynamic Form</h1> */}
         <Formik
             initialValues={ initialValues}
             onSubmit={async (values) => {
@@ -112,6 +80,9 @@ export const Formulario = ({submit, config}) => {
                         throw new Error(`Type ${type} is not supported`)
 
                     })}
+                    {status && status.sucess && (
+                        <div className='message' >{status.sucess}</div>
+                    )}
                         <button type='submit'>Enviar</button>
                         {/* <button type="button" onClick={ handleReset }>Reset Form</button> */}
                 </Form>

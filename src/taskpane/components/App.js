@@ -1,19 +1,8 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import { DefaultButton } from "@fluentui/react";
-import Header from "./Header";
 import Progress from "./Progress";
 import { Formulario } from "./Formulario";
 import AutoComplete from "./Autocomplete";
-
-
-
-//const baseURL = "http://cd-net-demo2.eastus2.cloudapp.azure.com/api/v1.0/PostDocuments";
-// const baseURL = "https://cdnet-demo-api.azurewebsites.net/api/dev?name=PostDocuments";
-
-/* global require */
-
-
 
 export default class App extends React.Component {
   constructor(props, context) {
@@ -22,7 +11,8 @@ export default class App extends React.Component {
       listItems: [],
       container: undefined,
       documentType: null,
-      formConfig: null
+      formConfig: null,
+      status: ''
     };
     this.setDocumentType = this.setDocumentType.bind(this)
   };
@@ -35,7 +25,6 @@ export default class App extends React.Component {
         console.log("asyncResult:", asyncResult.value)
         serviceRequest.attachmentToken = asyncResult.value;
         serviceRequest.state = 3;
-        // testAttachments(); 
     } else {
         showToast("Error", "Could not get callback token: " + asyncResult.error.message);
     }
@@ -107,8 +96,15 @@ export default class App extends React.Component {
     
     fetch("https://cdnet-demo-api.azurewebsites.net/api/dev?name=PostDocuments", requestOptions)
       .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));    
+      .then(result => {
+        this.state.status = 'Archivo enviado a carpeta digital satisfactoriamente';
+        console.log(result);
+
+      })
+      .catch(error => {
+        this.state.status = 'Hubo un error en el submit';
+        console.log('error', error);
+    });    
    });
 
     if (serviceRequest.attachmentToken == "") {
@@ -158,7 +154,6 @@ export default class App extends React.Component {
 
 
   setContainer = (paramContainer) => {
-    // this.state.container = paramContainer;
     this.setState({
       container : paramContainer
     });
@@ -169,12 +164,6 @@ export default class App extends React.Component {
   render() {
     
     const { title, isOfficeInitialized } = this.props;
-
-    
-    
-    
-    // const [selectedContainer, setSelectedContainer] = React.useState();
-    // const [documentType, setDocumentType] = React.useState();
 
     if (!isOfficeInitialized) {
       return (
@@ -188,8 +177,6 @@ export default class App extends React.Component {
 
     const label1 = "Container";
     const label2 = "Document Type";
-    const fetch1 = `https://cdnet-demo-api.azurewebsites.net/api/dev?name=Containerslist&method=get`; //Este funciona.
-    const fetch2 = `https://cdnet-demo-api.azurewebsites.net/api/dev?name=GetContainer/20&method=get&id=20`; // Funciona
     return (
       <div className="ms-welcome">
         <div className="ms-welcome__main">
@@ -215,12 +202,12 @@ export default class App extends React.Component {
 
           }
 
+          <p> { this.state.status } </p>
+
           {
             this.state.documentType && this.state.formConfig &&
             <Formulario submit={this.click} config={this.state.formConfig} />
           }
-          
-          
         </div>
       </div>
     );

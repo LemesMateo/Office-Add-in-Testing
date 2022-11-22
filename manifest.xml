@@ -2,7 +2,7 @@
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
   <Id>84dcbd8e-1e73-4948-a094-87bf14e8dcd0</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>MateoLemes</ProviderName>
+  <ProviderName>DigitalFolder</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Submit a carpeta digital"/>
   <Description DefaultValue="Subir adjuntos a carpeta digital."/>
@@ -94,7 +94,7 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GroupLabel" DefaultValue="Mateo's Add-in"/>
+        <bt:String id="GroupLabel" DefaultValue="Digital Folder Add-in"/>
         <bt:String id="TaskpaneButton.Label" DefaultValue="Mostrar panel de app"/>
         <bt:String id="ActionButton.Label" DefaultValue="Correr accion"/>
       </bt:ShortStrings>

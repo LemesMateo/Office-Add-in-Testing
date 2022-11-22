@@ -36,8 +36,6 @@ const AutoComplete = ({label, fetchUrl, displayName, keyName, setSelected }) => 
         let selected = suggestions.find( (x) => x[displayName] === e.target.innerText);
         setSelected(selected);
         console.log("selected:", selected);
-        // console.log("setSelected:", setSelected);
-        // console.log("suggestions[suggestionIndex](del click):", e.target);
         setSuggestionsActive(false);
     };
 
@@ -48,7 +46,6 @@ const AutoComplete = ({label, fetchUrl, displayName, keyName, setSelected }) => 
                 return;
             }
             setSuggestionIndex(suggestionIndex - 1);
-            // dataSet(data[suggestionIndex - 1]);
         }
         // DOWN ARROW - FLECHA ABAJO
         else if (e.keyCode === 40) {
@@ -56,7 +53,6 @@ const AutoComplete = ({label, fetchUrl, displayName, keyName, setSelected }) => 
                 return;
             }
             setSuggestionIndex(suggestionIndex + 1);
-            // dataSet(data[suggestionIndex + 1]);
         }
         // ENTER
         else if (e.keyCode === 13) {
