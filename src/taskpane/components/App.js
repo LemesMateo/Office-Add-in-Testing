@@ -12,7 +12,8 @@ export default class App extends React.Component {
       container: undefined,
       documentType: null,
       formConfig: null,
-      status: ''
+      status: '',
+      error: ''
     };
     this.setDocumentType = this.setDocumentType.bind(this)
   };
@@ -22,7 +23,7 @@ export default class App extends React.Component {
   attachmentTokenCallback = (asyncResult, userContext) => {
     if (asyncResult.status === "succeeded") {
         // Cache the result from the server.
-        console.log("asyncResult:", asyncResult.value)
+        // console.log("asyncResult:", asyncResult.value)
         serviceRequest.attachmentToken = asyncResult.value;
         serviceRequest.state = 3;
     } else {
@@ -30,21 +31,21 @@ export default class App extends React.Component {
     }
   };
   
-
-
   
   click = async (e) => {
-    console.log("Office:", Office);
-    console.log("Recibido del submit de formulario:", e)
+    // console.log("Office:", Office);
+    // console.log("Recibido del submit de formulario:", e)
+    this.setState({status: ''});
+    this.setState({error: ''});
     
     let serviceRequest = {
       attachmentToken: '',
       ewsUrl         : Office.context.mailbox.ewsUrl,
       attachments    : []
-   };
-   let attachment = Office.context.mailbox.item.attachments[0];
-   console.log("attachment: ", attachment);
-   Office.context.mailbox.item.getAttachmentContentAsync(attachment.id, (result)=> {
+    };
+    let attachment = Office.context.mailbox.item.attachments[0];
+    // console.log("attachment: ", attachment);
+    Office.context.mailbox.item.getAttachmentContentAsync(attachment.id, (result)=> {
    
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -67,7 +68,7 @@ export default class App extends React.Component {
     var dataForm = JSON.parse(e);
 
     Object.keys(dataForm).forEach(key => {
-      console.log(key, dataForm[key]);
+      // console.log(key, dataForm[key]);
       if (key === "d_Title")
       {
         data.DocumentPropertyValues.find(x=> x.Name === "d_Title").Value == dataForm[key];
@@ -82,7 +83,7 @@ export default class App extends React.Component {
         );
       }
     });
-    console.log("data:", data);     
+    // console.log("data:", data);     
      
      
     var raw = JSON.stringify(data);
@@ -94,27 +95,26 @@ export default class App extends React.Component {
       redirect: 'follow'
     };
     
-    fetch("https://cdnet-demo-api.azurewebsites.net/api/dev?name=PostDocuments", requestOptions)
+    fetch("https://cdnet-demo-api.azurewebsites.net/api/dev?name=create", requestOptions)
       .then(response => response.text())
       .then(result => {
-        this.state.status = 'Archivo enviado a carpeta digital satisfactoriamente';
-        console.log(result);
-
+        this.setState({status: 'Archivo enviado a carpeta digital satisfactoriamente'});
+        // console.log("result: ", result);
+        // console.log("status: ", this.state.status);
       })
       .catch(error => {
-        this.state.status = 'Hubo un error en el submit';
-        console.log('error', error);
+        this.setState({error: 'Ha ocurrido un error al enviar el archivo a CD'});
+        // console.log('error: ', error);
+        //console.log('Status error: ', this.state.error);
     });    
    });
-
     if (serviceRequest.attachmentToken == "") {
       Office.context.mailbox.getCallbackTokenAsync(attachmentTokenCallback);
-  }
+    }
   };
+
   
-  
-  
-  
+    
   setDocumentType = (paramDocumentType) => {
     this.setState({
       documentType : paramDocumentType
@@ -133,8 +133,9 @@ export default class App extends React.Component {
       fetch(`https://cdnet-demo-api.azurewebsites.net/api/dev?name=GetConfigurationDocumentsTypeProperties&method=get&documentTypeId=${paramDocumentType.id}`, requestOptions)
         .then(response => response.text())
         .then(result => {
-          console.log("Getconfig:",result);
-          console.log("container desde dentro del Fetch:",this.state.container);
+          //console logs for testing:
+          // console.log("Getconfig:",result);
+          // console.log("container desde dentro del Fetch:",this.state.container);
           this.setState({
             formConfig: JSON.parse(result).data
           });
@@ -160,6 +161,7 @@ export default class App extends React.Component {
     
   }
 
+ 
 
   render() {
     
@@ -186,9 +188,7 @@ export default class App extends React.Component {
             displayName="name" 
             keyName="id" 
             fetchUrl="https://cdnet-demo-api.azurewebsites.net/api/dev?name=Containerslist&method=get" 
-          />
-
-          
+          />      
 
           {
             this.state.container  &&
@@ -202,11 +202,19 @@ export default class App extends React.Component {
 
           }
 
-          <p> { this.state.status } </p>
-
           {
             this.state.documentType && this.state.formConfig &&
             <Formulario submit={this.click} config={this.state.formConfig} />
+          }
+
+          {
+            (this.state.status !== '') &&             
+            <p className="success-msg"> { this.state.status } </p>
+          }
+
+          {
+            (this.state.error !== '') && 
+            <p className="error-msg" > { this.state.error } </p>
           }
         </div>
       </div>

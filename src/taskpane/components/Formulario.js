@@ -29,7 +29,7 @@ export const Formulario = ({submit, config}) => {
         }
     
         requiredFields[input.name] = schema;
-        console.log("configuró:", input.name);
+        // console.log("configuró:", input.name);
     }
 
     const validationSchema = Yup.object({...requiredFields});
@@ -39,7 +39,7 @@ export const Formulario = ({submit, config}) => {
             initialValues={ initialValues}
             onSubmit={async (values) => {
                 submit(JSON.stringify(values));
-                console.log('Submit succeded');
+                // console.log('Submit succeded');
             }}
             validationSchema={validationSchema}
         
