@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Progress from "./Progress";
 import { Formulario } from "./Formulario";
 import AutoComplete from "./Autocomplete";
+import { Spinner, SpinnerSize } from "@fluentui/react";
 
 export default class App extends React.Component {
   constructor(props, context) {
@@ -13,7 +14,8 @@ export default class App extends React.Component {
       documentType: null,
       formConfig: null,
       status: '',
-      error: ''
+      error: '',
+      loading: false
     };
     this.setDocumentType = this.setDocumentType.bind(this)
   };
@@ -95,14 +97,17 @@ export default class App extends React.Component {
       redirect: 'follow'
     };
     
+    this.setState({loading: true});
     fetch("https://cdnet-demo-api.azurewebsites.net/api/dev?name=create", requestOptions)
       .then(response => response.text())
       .then(result => {
+        this.setState({loading: false});
         this.setState({status: 'Archivo enviado a carpeta digital satisfactoriamente'});
         // console.log("result: ", result);
         // console.log("status: ", this.state.status);
       })
       .catch(error => {
+        this.setState({loading: false});
         this.setState({error: 'Ha ocurrido un error al enviar el archivo a CD'});
         // console.log('error: ', error);
         //console.log('Status error: ', this.state.error);
@@ -205,6 +210,12 @@ export default class App extends React.Component {
           {
             this.state.documentType && this.state.formConfig &&
             <Formulario submit={this.click} config={this.state.formConfig} />
+          }
+
+          <br/>
+          {
+            (this.state.loading) &&
+            <Spinner size={SpinnerSize.large} label='Enviando Archivo...' />
           }
 
           {
